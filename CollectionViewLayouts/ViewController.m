@@ -27,9 +27,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGFloat width = self.view.bounds.size.width * 2 / 2.5;
+    CGFloat height = width * 0.3;
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.view.bounds.size.width - width)/2, (self.view.bounds.size.height - height)/2 + 10, width, height)];
+    layer.path = path.CGPath;
+    layer.lineWidth = 1;
+    layer.fillColor = nil;
+    layer.strokeColor = [UIColor whiteColor].CGColor;
+    [self.collectionView.layer addSublayer:layer];
+    layer.backgroundColor = [UIColor redColor].CGColor;
+    
+    
 
     // initial count of cells
-    self.cellCount = 20;
+    self.cellCount = 4;
 
     // register our custom Cell
     [self.collectionView registerClass:[Cell class] forCellWithReuseIdentifier:@"Cell"];

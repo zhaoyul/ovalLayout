@@ -65,9 +65,9 @@
 
     attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
     attributes.center = CGPointMake(_center.x + _radius *
-                                    cosf(2 * indexPath.item * M_PI / _cellCount),
-                                    _center.y + _radius *
-                                    sinf(2 * indexPath.item * M_PI / _cellCount));
+                                    cosf(2 * indexPath.item * M_PI / _cellCount + M_PI/5),
+                                    _center.y + _radius * 0.3 *
+                                    sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5));
     return attributes;
 }
 
