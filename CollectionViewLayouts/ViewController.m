@@ -48,7 +48,7 @@
 
     // initial count of cells
     self.cellCount = 4;
-    sectionNo = 1;
+    sectionNo = 0;
     // register our custom Cell
     [self.collectionView registerClass:[Cell class] forCellWithReuseIdentifier:@"Cell"];
     [self.collectionView registerClass:[ImageCell class] forCellWithReuseIdentifier:@"ImageCell"];
@@ -118,13 +118,14 @@
     NSLog(@"ViewController:handleTapGesture");
 
     if (sender.state == UIGestureRecognizerStateEnded) {
-        sectionNo -= 1;
-        [self.collectionView performBatchUpdates:^{
-            [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
-        }completion:^(BOOL fin){
-            sectionNo += 1;
-            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
-        }];
+//        sectionNo -= 1;
+//        [self.collectionView performBatchUpdates:^{
+//            [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
+//        }completion:^(BOOL fin){
+//            sectionNo += 1;
+//            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
+//        }];
+        [self.collectionView performBatchUpdates:nil completion:nil];
     }
 }
 

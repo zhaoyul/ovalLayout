@@ -72,11 +72,12 @@
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes
                                                         layoutAttributesForCellWithIndexPath:indexPath];
     if (indexPath.section == 0) {
+        self.offset += M_PI/2;
         attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
         attributes.center = CGPointMake(_center.x + _radius *
-                                        cosf(2 * indexPath.item * M_PI / _cellCountForSection0 + M_PI/5 + self.offset),
+                                        cosf( M_PI/5 + self.offset),
                                         _center.y + _radius * 0.3 *
-                                        sinf(2 * indexPath.item * M_PI  / _cellCountForSection0 + M_PI/5 + self.offset));
+                                        sinf( M_PI/5 + self.offset));
     } else {
         attributes.size = CGSizeMake(200, 500);
         attributes.center = _center;
