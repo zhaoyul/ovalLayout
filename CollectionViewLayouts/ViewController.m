@@ -11,7 +11,9 @@
 #import "CircleLayout.h"
 #import "Cell.h"
 
-@implementation ViewController
+
+@implementation ViewController {
+}
 
 - (id)init
 {
@@ -67,6 +69,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        cell.backgroundColor = [UIColor redColor];
+    }
+    if (indexPath.row == 1) {
+        cell.backgroundColor = [UIColor blueColor];
+    }
+    if (indexPath.row == 2) {
+        cell.backgroundColor = [UIColor yellowColor];
+    }
     return cell;
 }
 
@@ -77,23 +88,7 @@
     NSLog(@"ViewController:handleTapGesture");
 
     if (sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint initialPinchPoint = [sender locationInView:self.collectionView];
-        NSIndexPath *tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialPinchPoint];
-
-        if (tappedCellPath != nil) {
-            NSLog(@"ViewController:handleTapGesture: REMOVE CELL AT [%d, %d]", tappedCellPath.section, tappedCellPath.row);
-            self.cellCount -= 1;
-            [self.collectionView performBatchUpdates:^{
-                [self.collectionView deleteItemsAtIndexPaths:@[tappedCellPath]];
-            } completion:nil];
-        } else {
-            self.cellCount += 1;
-            [self.collectionView performBatchUpdates:^{
-                NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-                NSLog(@"ViewController:handleTapGesture: ADD CELL AT [0, 0]");
-                [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-            } completion:nil];
-        }
+        [self.collectionView performBatchUpdates:nil completion:nil];
     }
 }
 

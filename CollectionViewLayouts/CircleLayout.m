@@ -36,6 +36,8 @@
 {
     [super prepareLayout];
     NSLog(@"CircleLayout::prepareLayout");
+    
+    _offset +=  M_PI/2;
 
     // content area is exactly our viewble area
     size = self.collectionView.frame.size;
@@ -55,7 +57,6 @@
     NSLog(@"CircleLayout::collectionViewContentSize:size %.1fx%.1f", size.width, size.height);
     return size;
 }
-
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //NSLog(@"CircleLayout::layoutAttributesForItemAtIndexPath:indexPath [%d, %d]", indexPath.section, indexPath.row);
@@ -65,9 +66,9 @@
 
     attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
     attributes.center = CGPointMake(_center.x + _radius *
-                                    cosf(2 * indexPath.item * M_PI / _cellCount + M_PI/5),
+                                    cosf(2 * indexPath.item * M_PI / _cellCount + M_PI/5 + self.offset),
                                     _center.y + _radius * 0.3 *
-                                    sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5));
+                                    sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5 + self.offset));
     return attributes;
 }
 
