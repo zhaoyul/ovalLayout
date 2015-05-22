@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57999ED91B0FA54100A59289 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57999ED81B0FA54100A59289 /* ImageCell.m */; };
+		57999EDE1B0FA80A00A59289 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57999EDA1B0FA80A00A59289 /* 1.png */; };
+		57999EDF1B0FA80A00A59289 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57999EDB1B0FA80A00A59289 /* 2.png */; };
+		57999EE01B0FA80A00A59289 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57999EDC1B0FA80A00A59289 /* 3.png */; };
+		57999EE11B0FA80A00A59289 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57999EDD1B0FA80A00A59289 /* 4.png */; };
 		9E12495F1750E0A000E9F0F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12495E1750E0A000E9F0F9 /* QuartzCore.framework */; };
 		9EBBC6B61750C953008524B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EBBC6B51750C953008524B4 /* UIKit.framework */; };
 		9EBBC6B81750C953008524B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EBBC6B71750C953008524B4 /* Foundation.framework */; };
@@ -23,6 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57999ED71B0FA54100A59289 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		57999ED81B0FA54100A59289 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		57999EDA1B0FA80A00A59289 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		57999EDB1B0FA80A00A59289 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		57999EDC1B0FA80A00A59289 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		57999EDD1B0FA80A00A59289 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		9E12495E1750E0A000E9F0F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9EBBC6B21750C953008524B4 /* CollectionViewLayouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewLayouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EBBC6B51750C953008524B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -127,8 +138,14 @@
 		9EBBC6D61750CBE3008524B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				57999EDA1B0FA80A00A59289 /* 1.png */,
+				57999EDB1B0FA80A00A59289 /* 2.png */,
+				57999EDC1B0FA80A00A59289 /* 3.png */,
+				57999EDD1B0FA80A00A59289 /* 4.png */,
 				9EBBC6D71750CC19008524B4 /* Cell.h */,
 				9EBBC6D81750CC19008524B4 /* Cell.m */,
+				57999ED71B0FA54100A59289 /* ImageCell.h */,
+				57999ED81B0FA54100A59289 /* ImageCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -194,9 +211,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EBBC6C01750C953008524B4 /* InfoPlist.strings in Resources */,
+				57999EE01B0FA80A00A59289 /* 3.png in Resources */,
 				9EBBC6C81750C953008524B4 /* Default.png in Resources */,
 				9EBBC6CA1750C953008524B4 /* Default@2x.png in Resources */,
+				57999EDF1B0FA80A00A59289 /* 2.png in Resources */,
+				57999EE11B0FA80A00A59289 /* 4.png in Resources */,
 				9EBBC6CC1750C953008524B4 /* Default-568h@2x.png in Resources */,
+				57999EDE1B0FA80A00A59289 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EBBC6C21750C953008524B4 /* main.m in Sources */,
+				57999ED91B0FA54100A59289 /* ImageCell.m in Sources */,
 				9EBBC6C61750C953008524B4 /* AppDelegate.m in Sources */,
 				9EBBC6D41750C9AB008524B4 /* ViewController.m in Sources */,
 				9EBBC6D91750CC19008524B4 /* Cell.m in Sources */,

@@ -29,6 +29,8 @@
 @implementation CircleLayout {
     CGSize size;
     NSMutableArray *insertPaths, *deletePaths;
+    CGPoint incomingPoint;
+    CGPoint outgoingPoint;
 }
 
 
@@ -43,13 +45,19 @@
     size = self.collectionView.frame.size;
 
     // we only support one section
-    _cellCount = [self.collectionView numberOfItemsInSection:0];
+    _cellCountForSection0 = [self.collectionView numberOfItemsInSection:0];
+    _cellCountForSection1 = [self.collectionView numberOfItemsInSection:1];
 
     // the center point of our viewable area
     _center = CGPointMake(size.width/2, size.height/2);
 
     // the circle radius
     _radius = MIN(size.width, size.height)/2.5;
+    
+//    incomingPoint = CGPointMake(_center.x + _radius *
+//                                cosf(2 * nt + M_PI/5 - M_PI_2),
+//                                _center.y + _radius * 0.3 *
+//                                sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5 + self.offset));
 }
 
 - (CGSize)collectionViewContentSize
@@ -62,13 +70,17 @@
     //NSLog(@"CircleLayout::layoutAttributesForItemAtIndexPath:indexPath [%d, %d]", indexPath.section, indexPath.row);
     // instanciate the layout attributes object
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes
-                                                    layoutAttributesForCellWithIndexPath:indexPath];
-
-    attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
-    attributes.center = CGPointMake(_center.x + _radius *
-                                    cosf(2 * indexPath.item * M_PI / _cellCount + M_PI/5 + self.offset),
-                                    _center.y + _radius * 0.3 *
-                                    sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5 + self.offset));
+                                                        layoutAttributesForCellWithIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
+        attributes.center = CGPointMake(_center.x + _radius *
+                                        cosf(2 * indexPath.item * M_PI / _cellCountForSection0 + M_PI/5 + self.offset),
+                                        _center.y + _radius * 0.3 *
+                                        sinf(2 * indexPath.item * M_PI  / _cellCountForSection0 + M_PI/5 + self.offset));
+    } else {
+        attributes.size = CGSizeMake(200, 500);
+        attributes.center = _center;
+    }
     return attributes;
 }
 
@@ -76,10 +88,15 @@
 {
     NSLog(@"CircleLayout::layoutAttributesForElementsInRect");
     NSMutableArray *attributes = [NSMutableArray array];
-    for (NSInteger i=0; i < self.cellCount; i++) {
+    for (NSInteger i=0; i < self.cellCountForSection0; i++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
     }
+    for (NSInteger i=0; i < self.cellCountForSection1; i++) {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForItem:i inSection:1];
+        [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
+    }
+    
     return attributes;
 }
 
@@ -112,10 +129,10 @@
         attributes.alpha = 0.0;
         attributes.center = CGPointMake(_center.x, _center.y);
         attributes.size = CGSizeMake(ITEM_SIZE * 2, ITEM_SIZE * 2);
-        NSLog(@"Appearing layout for **inserted** object [%d, %d] set", itemIndexPath.section, itemIndexPath.row);
+        NSLog(@"Appearing layout for **inserted** object [%ld, %ld] set", (long)itemIndexPath.section, (long)itemIndexPath.row);
     } else {
         // all other objects
-        NSLog(@"Appearing layout for other object [%d, %d] set", itemIndexPath.section, itemIndexPath.row);
+        NSLog(@"Appearing layout for other object [%ld, %ld] set", (long)itemIndexPath.section, (long)itemIndexPath.row);
     }
     return attributes;
 }
