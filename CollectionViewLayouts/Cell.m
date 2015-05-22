@@ -14,12 +14,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        //NSLog(@"Cell::initWithFrame");
-        self.backgroundColor = [UIColor clearColor];
+        self.layer.speed =0.5;//default speed  is 1
     }
     return self;
 }
-
 - (void)drawRect:(CGRect)rect
 {
     //// Color Declarations
@@ -32,6 +30,7 @@
 }
 
 -(UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
+    [UIView setAnimationDuration:3.0];
     return layoutAttributes;
 }
 

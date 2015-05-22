@@ -54,10 +54,10 @@
     // the circle radius
     _radius = MIN(size.width, size.height)/2.5;
     
-//    incomingPoint = CGPointMake(_center.x + _radius *
-//                                cosf(2 * nt + M_PI/5 - M_PI_2),
-//                                _center.y + _radius * 0.3 *
-//                                sinf(2 * indexPath.item * M_PI  / _cellCount + M_PI/5 + self.offset));
+    incomingPoint = CGPointMake(_center.x + _radius * cosf(M_PI/5),
+                                _center.y + _radius * 0.3 * sinf(M_PI/5));
+    outgoingPoint = CGPointMake(_center.x + _radius * cosf(M_PI/5 + M_PI),
+                                _center.y + _radius * 0.3 * sinf(M_PI/5 + M_PI));
 }
 
 - (CGSize)collectionViewContentSize
@@ -72,14 +72,14 @@
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes
                                                         layoutAttributesForCellWithIndexPath:indexPath];
     if (indexPath.section == 0) {
-        self.offset += M_PI/2;
+
         attributes.size = CGSizeMake(ITEM_SIZE, ITEM_SIZE);
         attributes.center = CGPointMake(_center.x + _radius *
-                                        cosf( M_PI/5 + self.offset),
+                                        cosf( M_PI/5 + self.offset + M_PI/2 * indexPath.item),
                                         _center.y + _radius * 0.3 *
-                                        sinf( M_PI/5 + self.offset));
+                                        sinf( M_PI/5 + self.offset + M_PI/2 * indexPath.item));
     } else {
-        attributes.size = CGSizeMake(200, 500);
+        attributes.size = CGSizeMake(200, 200);
         attributes.center = _center;
     }
     return attributes;
@@ -128,8 +128,9 @@
     // begin-transition attributes for inserted objects
     if ([insertPaths containsObject:itemIndexPath]) {
         attributes.alpha = 0.0;
-        attributes.center = CGPointMake(_center.x, _center.y);
-        attributes.size = CGSizeMake(ITEM_SIZE * 2, ITEM_SIZE * 2);
+        attributes.center = incomingPoint;
+//        attributes.size = CGSizeMake(ITEM_SIZE * 2, ITEM_SIZE * 2);
+        attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
         NSLog(@"Appearing layout for **inserted** object [%ld, %ld] set", (long)itemIndexPath.section, (long)itemIndexPath.row);
     } else {
         // all other objects
@@ -145,7 +146,7 @@
     // end-transition attributes for deleted objects
     if ([deletePaths containsObject:itemIndexPath]) {
         attributes.alpha = 0.0;
-        attributes.center = CGPointMake(_center.x, _center.y);
+        attributes.center = outgoingPoint;
         attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
         NSLog(@"Disappearing layout for **deleted** object [%d, %d] set", itemIndexPath.section, itemIndexPath.row);
     } else {
